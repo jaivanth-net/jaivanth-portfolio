@@ -1,0 +1,1668 @@
+/* ========================================
+   FONT
+======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
+
+
+/* ========================================
+   COLOUR PALETTE
+======================================== */
+
+:root {
+    --background: #0F172A;
+
+    --card: #1E293B;
+
+    --card-inner: #162033;
+
+    --white: #F8FAFC;
+
+    --heading: #00F5FF;
+
+    --title: #7DD3FC;
+
+    --text: #CBD5E1;
+
+    --muted: #94A3B8;
+
+    --border: #334155;
+
+    --hover: #0EA5E9;
+
+    --success: #34D399;
+
+    --success-bg: #064E3B;
+}
+
+
+/* ========================================
+   GLOBAL
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Sora', sans-serif;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    line-height: 1.7;
+
+    font-weight: 400;
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+    min-height: 330px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    padding: 50px 20px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #172554 0%,
+            #0F172A 55%
+        );
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* ========================================
+   NAME
+======================================== */
+
+.hero h1 {
+    font-size: 58px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #00F5FF;
+    margin-bottom: 18px;
+
+    text-shadow:
+        0 0 5px #00E5FF,
+        0 0 12px #00BFFF,
+        0 0 25px rgba(0, 229, 255, 0.7),
+        0 0 45px rgba(0, 191, 255, 0.4);
+}
+
+
+/* ========================================
+   SCROLLING TITLE
+======================================== */
+
+.scroll-text-container {
+    width: 100%;
+
+    max-width: 900px;
+
+    height: 42px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.scroll-text {
+    font-family: 'Sora', sans-serif;
+
+    font-size: 19px;
+
+    font-weight: 500;
+
+    letter-spacing: 0.2px;
+
+    color: var(--heading);
+
+    white-space: nowrap;
+
+    animation: textScroll 0.8s ease-in-out;
+}
+
+
+/* ========================================
+   SCROLL ANIMATION
+======================================== */
+
+@keyframes textScroll {
+
+    0% {
+
+        transform:
+            translateY(35px)
+            scale(0.90);
+
+        opacity: 0;
+
+        filter: blur(6px);
+
+    }
+
+    70% {
+
+        transform:
+            translateY(-3px)
+            scale(1.02);
+
+        opacity: 1;
+
+        filter: blur(0);
+
+    }
+
+    100% {
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* ========================================
+   MAIN SECTIONS
+======================================== */
+
+.section {
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin: 65px auto;
+
+    padding: 0 20px;
+}
+
+
+/* ========================================
+   SECTION HEADINGS
+======================================== */
+
+.section h2 {
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    color: #00F5FF;
+
+    margin-bottom: 30px;
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid var(--border);
+
+    /* Black outline + black glow */
+
+    text-shadow:
+    -1px -1px 0 #000000,
+     1px -1px 0 #000000,
+    -1px  1px 0 #000000,
+     1px  1px 0 #000000,
+     0 0 6px #000000,
+     0 0 15px #000000,
+     0 0 25px rgba(0, 0, 0, 0.95);
+
+}
+
+
+/* ========================================
+   CARDS
+======================================== */
+
+.card {
+    width: 100%;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 30px;
+
+    margin-bottom: 20px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* ========================================
+   CARD HOVER
+======================================== */
+
+.card:hover {
+    transform: translateY(-4px);
+
+    border-color: var(--heading);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ========================================
+   SKILLS
+======================================== */
+
+.card ul {
+    list-style: none;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+
+    padding: 0;
+
+    margin: 0;
+}
+
+
+/* ========================================
+   SKILL ITEMS
+======================================== */
+
+.card li {
+    background: var(--card-inner);
+
+    padding: 14px 20px;
+
+    border-radius: 8px;
+
+    border-left: 3px solid var(--heading);
+
+    font-family: 'Sora', sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 400;
+
+    color: var(--text);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* ========================================
+   SKILL HOVER
+======================================== */
+
+.card li:hover {
+    transform: translateX(5px);
+
+    background: var(--card);
+}
+
+
+/* ========================================
+   PROJECT TITLES
+======================================== */
+
+.card h3 {
+    font-family: 'Sora', sans-serif;
+
+    font-size: 22px;
+
+    font-weight: 600;
+
+    color: var(--title);
+
+    margin-bottom: 12px;
+}
+
+
+/* ========================================
+   INNER CONTENT
+======================================== */
+
+.card p {
+    font-family: 'Sora', sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 400;
+
+    color: var(--text);
+
+    line-height: 1.8;
+
+    margin-bottom: 10px;
+}
+
+
+/* ========================================
+   PROJECT STATUS
+======================================== */
+
+.status {
+    display: inline-block;
+
+    margin-top: 12px;
+
+    padding: 5px 14px;
+
+    border-radius: 20px;
+
+    background: var(--success-bg);
+
+    color: var(--success);
+
+    font-family: 'Sora', sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+/* ========================================
+   NOTES
+======================================== */
+
+.note {
+    margin-top: 20px;
+
+    font-family: 'Sora', sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 400;
+
+    color: var(--muted);
+
+    font-style: italic;
+}
+
+
+/* ========================================
+   CONNECT WITH ME
+======================================== */
+
+.social-links {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 25px;
+
+    margin-top: 25px;
+}
+
+
+/* ========================================
+   SOCIAL ICON CONTAINER
+======================================== */
+
+.social-icon {
+    width: 64px;
+
+    height: 64px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 50%;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* ========================================
+   SOCIAL ICON
+======================================== */
+
+.social-icon img {
+    width: 30px;
+
+    height: 30px;
+
+    /*
+       IMPORTANT:
+       No invert filter here.
+       This keeps the original logo colours.
+    */
+
+    filter: none;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+/* ========================================
+   INSTAGRAM
+======================================== */
+
+.social-icon.instagram img {
+    filter: none;
+}
+
+
+/* ========================================
+   GITHUB
+======================================== */
+
+.social-icon.github img {
+    filter: none;
+}
+
+
+/* ========================================
+   LINKEDIN
+======================================== */
+
+.social-icon.linkedin img {
+    filter: none;
+}
+
+
+/* ========================================
+   GMAIL
+======================================== */
+
+.social-icon.gmail img {
+    filter: none;
+}
+
+
+
+/* ========================================
+   SOCIAL HOVER
+======================================== */
+
+.social-icon:hover {
+    transform: translateY(-7px);
+
+    border-color: var(--heading);
+
+    background: #172554;
+
+    box-shadow:
+        0 8px 20px rgba(56, 189, 248, 0.20);
+}
+
+
+.social-icon:hover img {
+    transform: scale(1.15);
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer {
+    width: 100%;
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    margin-top: 80px;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--muted);
+
+    font-family: 'Sora', sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 400;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .hero {
+        min-height: 270px;
+
+        padding: 40px 15px;
+    }
+
+
+    .hero h1 {
+        font-size: 38px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .scroll-text {
+        font-size: 15px;
+    }
+
+
+    .section {
+        width: 92%;
+
+        padding: 0 10px;
+
+        margin: 45px auto;
+    }
+
+
+    .section h2 {
+        font-size: 26px;
+    }
+
+
+    .card {
+        padding: 22px;
+    }
+
+
+    .card ul {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+
+    .card li {
+        font-size: 15px;
+    }
+
+
+    .card h3 {
+        font-size: 20px;
+    }
+
+
+    .card p {
+        font-size: 15px;
+    }
+
+
+    /* SOCIAL ICONS */
+
+    .social-links {
+        gap: 15px;
+    }
+
+
+    .social-icon {
+        width: 54px;
+
+        height: 54px;
+    }
+
+
+    .social-icon img {
+        width: 25px;
+
+        height: 25px;
+    }
+
+
+    footer {
+        font-size: 13px;
+    }
+}
+
+
+/* ========================================
+   VERY SMALL SCREENS
+======================================== */
+
+@media (max-width: 400px) {
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+
+    .scroll-text {
+        font-size: 13px;
+    }
+
+
+    .social-links {
+        gap: 10px;
+    }
+}
+/* ========================================
+   ABOUT ME
+======================================== */
+
+.about-card {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 35px;
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--heading);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.about-intro {
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 12px;
+}
+
+.about-intro strong {
+    color: var(--white);
+    font-weight: 600;
+}
+
+.about-description {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 30px;
+}
+
+.about-details {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.about-row {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 20px;
+    padding: 16px 18px;
+    background: var(--card-inner);
+    border-left: 3px solid var(--heading);
+    border-radius: 8px;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.about-row:hover {
+    transform: translateX(5px);
+    background: var(--card);
+    border-color: var(--hover);
+}
+
+.about-label {
+    color: var(--title);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.about-value {
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* ========================================
+   NETWORKING TOOLS & PLATFORMS
+======================================== */
+
+.tools-intro {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    max-width: 900px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.tool-card {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--heading);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.tool-icon {
+    min-width: 55px;
+    height: 55px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--card-inner);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    font-size: 27px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
+}
+
+.tool-card:hover .tool-icon {
+    transform: scale(1.08);
+    border-color: var(--heading);
+    background: #172554;
+}
+
+.tool-content {
+    flex: 1;
+}
+
+.tool-category {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-bottom: 7px;
+}
+
+.tool-card h3 {
+    color: var(--title);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.tool-card p {
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .about-card {
+        padding: 22px;
+    }
+
+    .about-intro {
+        font-size: 15px;
+    }
+
+    .about-description {
+        font-size: 14px;
+    }
+
+    .about-row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        padding: 14px 16px;
+    }
+
+    .about-label {
+        font-size: 14px;
+    }
+
+    .about-value {
+        font-size: 14px;
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tool-card {
+        padding: 22px;
+        gap: 15px;
+    }
+
+    .tool-icon {
+        min-width: 48px;
+        height: 48px;
+        font-size: 23px;
+    }
+
+    .tool-card h3 {
+        font-size: 18px;
+    }
+
+    .tool-card p {
+        font-size: 13px;
+    }
+}
+/* ========================================
+   TOOLS I USE - LOGOS
+======================================== */
+
+.tools-logo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-top: 30px;
+}
+
+.logo-card {
+    height: 70px;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.logo-card img {
+    width: 48px;
+    height: 48px;
+
+    /* Black/white appearance initially */
+    filter: grayscale(1) brightness(0) invert(1);
+
+    transition:
+        filter 0.35s ease,
+        transform 0.35s ease;
+}
+
+
+/* ========================================
+   HOVER EFFECT
+======================================== */
+
+.logo-card:hover {
+    transform: translateY(-8px);
+    background: var(--card-inner);
+}
+
+.logo-card:hover img {
+    transform: scale(1.18);
+}
+
+
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 900px) {
+    .tools-logo-grid {
+        grid-template-columns: repeat(1, 2fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .tools-logo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .logo-card {
+        height: 125px;
+    }
+
+    .logo-card img {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+.college-name {
+    color: #00F5FF;
+    font-weight: 600;
+}
+
+.college-name {
+    color: #00F5FF;
+    font-weight: 600;
+
+    text-shadow:
+        0 0 4px #000000,
+        0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+
+/* ========================================
+   NETWORKING TOOLS & PLATFORMS
+======================================== */
+
+.tools-intro {
+
+    color: var(--muted);
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+
+    max-width: 900px;
+
+}
+
+
+/* ========================================
+   TOOLS GRID
+======================================== */
+
+.tools-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+}
+
+
+/* ========================================
+   TOOL CARD
+======================================== */
+
+.tool-card {
+
+    display: flex;
+
+    gap: 18px;
+
+    align-items: flex-start;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+
+}
+
+
+/* ========================================
+   CARD HOVER
+======================================== */
+
+.tool-card:hover {
+
+    transform: translateY(-5px);
+
+    border-color: #00F5FF;
+
+    box-shadow:
+        0 0 18px rgba(0, 245, 255, 0.18),
+        0 12px 30px rgba(0, 0, 0, 0.25);
+
+}
+
+
+/* ========================================
+   TOOL ICON
+======================================== */
+
+.tool-icon {
+
+    min-width: 52px;
+
+    width: 52px;
+
+    height: 52px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: var(--card-inner);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    font-size: 25px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+
+.tool-card:hover .tool-icon {
+
+    transform: scale(1.08);
+
+    border-color: #00F5FF;
+
+    background: #172554;
+
+    box-shadow:
+        0 0 12px rgba(0, 245, 255, 0.20);
+
+}
+
+
+/* ========================================
+   TOOL CONTENT
+======================================== */
+
+.tool-content {
+
+    flex: 1;
+
+}
+
+
+/* ========================================
+   CATEGORY
+======================================== */
+
+.tool-category {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+
+    margin-bottom: 6px;
+
+}
+
+
+/* ========================================
+   TOOL NAME
+======================================== */
+
+.tool-card h3 {
+
+    color: var(--title);
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    margin-bottom: 9px;
+
+    transition:
+        color 0.3s ease;
+
+}
+
+
+.tool-card:hover h3 {
+
+    color: #00F5FF;
+
+}
+
+
+/* ========================================
+   TOOL DESCRIPTION
+======================================== */
+
+.tool-card p {
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    margin: 0;
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .tools-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+
+    }
+
+
+    .tool-card {
+
+        padding: 21px;
+
+        gap: 15px;
+
+    }
+
+
+    .tool-icon {
+
+        min-width: 48px;
+
+        width: 48px;
+
+        height: 48px;
+
+        font-size: 22px;
+
+    }
+
+
+    .tool-card h3 {
+
+        font-size: 18px;
+
+    }
+
+
+    .tool-card p {
+
+        font-size: 13px;
+
+    }
+
+}
+
+
+/* ========================================
+   ONGOING PROJECTS TABLE
+======================================== */
+
+.projects-table-container {
+
+    width: 100%;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+}
+
+
+/* ========================================
+   TABLE
+======================================== */
+
+.projects-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+
+}
+
+
+/* ========================================
+   COLUMN WIDTHS
+======================================== */
+
+.projects-table th:nth-child(1),
+.projects-table td:nth-child(1) {
+
+    width: 5%;
+
+}
+
+
+.projects-table th:nth-child(2),
+.projects-table td:nth-child(2) {
+
+    width: 29%;
+
+}
+
+
+.projects-table th:nth-child(3),
+.projects-table td:nth-child(3) {
+
+    width: 51%;
+
+}
+
+
+.projects-table th:nth-child(4),
+.projects-table td:nth-child(4) {
+
+    width: 15%;
+
+}
+
+
+/* ========================================
+   TABLE HEADER
+======================================== */
+
+.projects-table thead {
+
+    background: #162033;
+
+}
+
+
+.projects-table th {
+
+    padding: 14px 12px;
+
+    color: #00F5FF;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    border-bottom: 1px solid var(--border);
+
+    text-shadow:
+        0 0 5px rgba(0, 245, 255, 0.35);
+
+}
+
+
+/* ========================================
+   TABLE CELLS
+======================================== */
+
+.projects-table td {
+
+    padding: 14px 12px;
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    line-height: 1.55;
+
+    border-bottom: 1px solid var(--border);
+
+    vertical-align: middle;
+
+    word-wrap: break-word;
+
+    overflow-wrap: break-word;
+
+}
+
+
+/* ========================================
+   PROJECT NUMBER
+======================================== */
+
+.projects-table td:first-child {
+
+    color: #00F5FF;
+
+    font-weight: 600;
+
+    text-align: center;
+
+}
+
+
+/* ========================================
+   PROJECT NAME
+======================================== */
+
+.project-name {
+
+    color: var(--title) !important;
+
+    font-weight: 600;
+
+}
+
+
+/* ========================================
+   STATUS
+======================================== */
+
+.projects-table td:nth-child(4) {
+
+    text-align: center;
+
+}
+
+
+.project-status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    padding: 4px 7px;
+
+    border-radius: 15px;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+}
+
+
+/* ========================================
+   ONGOING
+======================================== */
+
+.project-status.ongoing {
+
+    color: #00F5FF;
+
+    background: rgba(0, 245, 255, 0.08);
+
+    border: 1px solid rgba(0, 245, 255, 0.25);
+
+}
+
+
+/* ========================================
+   COMPLETED
+======================================== */
+
+.project-status.completed {
+
+    color: #39FF14;
+
+    background: rgba(57, 255, 20, 0.08);
+
+    border: 1px solid rgba(57, 255, 20, 0.25);
+
+}
+
+
+/* ========================================
+   ROW HOVER
+======================================== */
+
+.projects-table tbody tr {
+
+    transition:
+        background 0.25s ease;
+
+}
+
+
+.projects-table tbody tr:hover {
+
+    background: #162033;
+
+}
+
+
+.projects-table tbody tr:hover .project-name {
+
+    color: #00F5FF !important;
+
+}
+
+
+/* ========================================
+   LAST ROW
+======================================== */
+
+.projects-table tbody tr:last-child td {
+
+    border-bottom: none;
+
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+    .projects-table th,
+    .projects-table td {
+
+        padding: 12px 9px;
+
+        font-size: 12px;
+
+    }
+
+
+    .project-status {
+
+        font-size: 9px;
+
+        padding: 4px 6px;
+
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .projects-table {
+
+        width: 100%;
+
+        table-layout: fixed;
+
+    }
+
+
+    .projects-table th,
+    .projects-table td {
+
+        padding: 10px 6px;
+
+        font-size: 10px;
+
+    }
+
+
+    .projects-table th:nth-child(1),
+    .projects-table td:nth-child(1) {
+
+        width: 7%;
+
+    }
+
+
+    .projects-table th:nth-child(2),
+    .projects-table td:nth-child(2) {
+
+        width: 29%;
+
+    }
+
+
+    .projects-table th:nth-child(3),
+    .projects-table td:nth-child(3) {
+
+        width: 49%;
+
+    }
+
+
+    .projects-table th:nth-child(4),
+    .projects-table td:nth-child(4) {
+
+        width: 15%;
+
+    }
+
+
+    .project-status {
+
+        font-size: 8px;
+
+        padding: 3px 5px;
+
+        gap: 2px;
+
+    }
+
+}
+
+
+/* ========================================
+   VERY SMALL SCREENS
+======================================== */
+
+@media (max-width: 400px) {
+
+    .projects-table th,
+    .projects-table td {
+
+        padding: 8px 4px;
+
+        font-size: 9px;
+
+    }
+
+
+    .project-status {
+
+        font-size: 7px;
+
+        padding: 3px 4px;
+
+    }
+
+}
+
+.tool-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    filter:
+        grayscale(1)
+        brightness(0)
+        invert(1);
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+

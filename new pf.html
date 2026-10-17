@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaivanth T — Network &amp; Cloud Engineering Portfolio</title>
+<meta name="description" content="Jaivanth T — B.E. CSE student specializing in network engineering and cloud infrastructure.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+  :root{
+    --bg-void:#050810;
+    --bg-panel:#0b1220;
+    --bg-panel-alt:#0f1a2c;
+    --border:#1c2c42;
+    --border-soft:#142236;
+    --text:#e8eef6;
+    --text-muted:#8291a8;
+    --text-dim:#54627a;
+    --cyan:#4fe3d4;
+    --cyan-dim:rgba(79,227,212,.16);
+    --amber:#f2a93b;
+    --amber-dim:rgba(242,169,59,.16);
+    --violet:#8b7cf6;
+    --violet-dim:rgba(139,124,246,.16);
+    --font-display:'Space Grotesk', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+    --font-body:'Inter', sans-serif;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth; background:var(--bg-void);}
+
+  body{
+    background:var(--bg-void);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(var(--border-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:.28;
+    pointer-events:none;
+    z-index:0;
+    mask-image:radial-gradient(ellipse 90% 70% at 50% 0%, black 40%, transparent 100%);
+  }
+
+  ::selection{background:var(--cyan); color:var(--bg-void);}
+
+  a{color:inherit; text-decoration:none;}
+
+  img{max-width:100%; display:block;}
+
+  :focus-visible{outline:2px solid var(--cyan); outline-offset:3px;}
+
+  h1,h2,h3{font-family:var(--font-display); font-weight:600; letter-spacing:-0.01em; color:var(--text);}
+
+  .mono{font-family:var(--font-mono);}
+
+  .wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+
+  section{position:relative; z-index:1; scroll-margin-top:88px;}
+
+  /* cut-corner panel signature shape, used across cards */
+  .panel{
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    clip-path:polygon(18px 0, 100% 0, 100% 100%, 0 100%, 0 18px);
+    position:relative;
+  }
+  .panel::before{
+    content:"";
+    position:absolute; top:0; left:0;
+    width:18px; height:18px;
+    border-top:1px solid var(--border);
+    border-left:1px solid var(--border);
+    clip-path:polygon(0 0, 100% 0, 0 100%);
+    opacity:0;
+  }
+
+  /* ---------- cursor glow ---------- */
+  .cursor-glow{
+    position:fixed; top:0; left:0; width:460px; height:460px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(79,227,212,.06), transparent 70%);
+    pointer-events:none; z-index:2;
+    transform:translate(-50%,-50%);
+    will-change:transform;
+  }
+  @media (hover:none){ .cursor-glow{display:none;} }
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(5,8,16,.72);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border-soft);
+  }
+  .nav-inner{
+    max-width:1120px; margin:0 auto; padding:0 32px;
+    height:64px; display:flex; align-items:center; justify-content:space-between;
+    gap:24px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--font-display); font-weight:600; font-size:15px;
+  }
+  .logo-mark{
+    width:30px; height:30px; border:1px solid var(--cyan);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-size:11px; color:var(--cyan);
+    clip-path:polygon(6px 0,100% 0,100% 100%,0 100%,0 6px);
+  }
+  .navlinks{display:flex; align-items:center; gap:28px; font-family:var(--font-mono); font-size:12.5px; color:var(--text-muted);}
+  .navlinks a{transition:color .15s ease;}
+  .navlinks a:hover{color:var(--cyan);}
+  .status{
+    display:flex; align-items:center; gap:8px;
+    font-family:var(--font-mono); font-size:11.5px; color:var(--text-muted);
+    border:1px solid var(--border); padding:6px 12px;
+    clip-path:polygon(8px 0,100% 0,100% 100%,0 100%,0 8px);
+  }
+  .status-dot{width:7px; height:7px; border-radius:50%; background:var(--cyan); box-shadow:0 0 0 0 rgba(79,227,212,.6); animation:pulse 2.2s infinite;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(79,227,212,.55);}
+    70%{box-shadow:0 0 0 8px rgba(79,227,212,0);}
+    100%{box-shadow:0 0 0 0 rgba(79,227,212,0);}
+  }
+  @media (max-width:720px){ .navlinks{display:none;} }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh; display:flex; align-items:center; position:relative;
+    padding-top:64px;
+  }
+  #hero-canvas{position:absolute; inset:0; z-index:0;}
+  .hero-inner{position:relative; z-index:2; max-width:1120px; margin:0 auto; padding:0 32px; width:100%;}
+  .hero-tag{
+    font-family:var(--font-mono); font-size:12.5px; color:var(--cyan);
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--border); padding:6px 12px; margin-bottom:28px;
+    clip-path:polygon(8px 0,100% 0,100% 100%,0 100%,0 8px);
+    background:rgba(11,18,32,.6);
+  }
+  .hero h1{
+    font-size:clamp(42px,7vw,84px);
+    line-height:.98;
+    max-width:820px;
+  }
+  .hero-role{
+    font-family:var(--font-mono); font-size:14px; color:var(--text-muted);
+    margin-top:22px; max-width:520px;
+  }
+  .hero-role b{color:var(--text); font-weight:500;}
+  .hero-desc{
+    margin-top:18px; max-width:480px; color:var(--text-muted); font-size:15.5px;
+  }
+  .hero-scroll{
+    margin-top:56px; display:flex; align-items:center; gap:12px;
+    font-family:var(--font-mono); font-size:11.5px; color:var(--text-dim);
+  }
+  .hero-scroll .line{width:36px; height:1px; background:var(--text-dim); position:relative; overflow:hidden;}
+  .hero-scroll .line::after{
+    content:""; position:absolute; top:0; left:-100%; width:100%; height:100%;
+    background:var(--cyan); animation:scan 2.4s ease-in-out infinite;
+  }
+  @keyframes scan{ 0%{left:-100%;} 50%{left:100%;} 100%{left:100%;} }
+
+  /* ---------- section heading ---------- */
+  .section-head{margin-bottom:48px; max-width:640px;}
+  .section-path{font-family:var(--font-mono); font-size:12px; color:var(--cyan); margin-bottom:14px;}
+  .section-head h2{font-size:clamp(28px,4vw,40px);}
+  .section-head p{color:var(--text-muted); margin-top:12px; font-size:15px; max-width:520px;}
+
+  section.block{padding:120px 0;}
+  section.block.tight{padding-top:0;}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0; clip-path:inset(0 0 100% 0); transition:opacity .7s ease, clip-path .9s cubic-bezier(.16,.84,.44,1);}
+  .reveal.in-view{opacity:1; clip-path:inset(0 0 0% 0);}
+  .reveal.in-view .scanbar{animation:scansweep 1s ease forwards;}
+  .scanbar{position:absolute; left:0; right:0; top:0; height:2px; background:var(--cyan); box-shadow:0 0 14px 2px var(--cyan); opacity:0;}
+  @keyframes scansweep{
+    0%{top:0; opacity:1;}
+    90%{opacity:1;}
+    100%{top:100%; opacity:0;}
+  }
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:64px; align-items:start;}
+  @media (max-width:860px){ .about-grid{grid-template-columns:1fr;} }
+
+  .about-copy p{color:var(--text-muted); font-size:15.5px; margin-bottom:16px; max-width:520px;}
+  .about-copy p b{color:var(--text); font-weight:500;}
+
+  .stat-list{margin-top:36px; display:flex; flex-direction:column; gap:0;}
+  .stat-row{
+    display:grid; grid-template-columns:150px 1fr; gap:18px;
+    padding:16px 0; border-top:1px solid var(--border-soft);
+  }
+  .stat-row:last-child{border-bottom:1px solid var(--border-soft);}
+  .stat-label{font-family:var(--font-mono); font-size:11.5px; color:var(--text-dim); padding-top:2px;}
+  .stat-value{font-size:14.5px; color:var(--text);}
+  .stat-value span{color:var(--text-muted);}
+
+  .skills-title{font-family:var(--font-mono); font-size:12px; color:var(--cyan); margin-top:40px; margin-bottom:14px;}
+  .skill-tags{display:flex; flex-wrap:wrap; gap:10px;}
+  .skill-tag{
+    font-family:var(--font-mono); font-size:12px; color:var(--text-muted);
+    border:1px solid var(--border); padding:7px 12px;
+    clip-path:polygon(6px 0,100% 0,100% 100%,0 100%,0 6px);
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .skill-tag:hover{border-color:var(--cyan); color:var(--cyan);}
+
+  .node-box{
+    position:relative; aspect-ratio:1/1; border:1px solid var(--border);
+    background:var(--bg-panel);
+    clip-path:polygon(22px 0,100% 0,100% 100%,0 100%,0 22px);
+    overflow:hidden;
+  }
+  .node-box .tag{
+    position:absolute; top:14px; left:16px; z-index:2;
+    font-family:var(--font-mono); font-size:11px; color:var(--text-dim);
+  }
+  #about-canvas{position:absolute; inset:0;}
+
+  /* ---------- toolbar ---------- */
+  .tool-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:860px){ .tool-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .tool-grid{grid-template-columns:1fr;} }
+
+  .tool-card{
+    padding:28px 24px; transition:border-color .2s ease, background .2s ease;
+    transform-style:preserve-3d; will-change:transform;
+  }
+  .tool-card:hover{border-color:var(--cyan); background:var(--bg-panel-alt);}
+  .tool-icon{
+    width:44px; height:44px; display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--border); font-size:17px; color:var(--cyan);
+    clip-path:polygon(6px 0,100% 0,100% 100%,0 100%,0 6px);
+    margin-bottom:20px;
+  }
+  .tool-cat{font-family:var(--font-mono); font-size:10.5px; color:var(--text-dim); margin-bottom:6px;}
+  .tool-name{font-family:var(--font-display); font-size:17px; font-weight:600; margin-bottom:10px;}
+  .tool-desc{font-size:13px; color:var(--text-muted); line-height:1.55;}
+
+  /* ---------- projects ---------- */
+  .proj-list{display:flex; flex-direction:column; gap:12px;}
+  .proj-row{
+    padding:22px 26px; display:grid; grid-template-columns:32px 1.4fr 2fr 120px; gap:20px; align-items:center;
+    transform-style:preserve-3d; will-change:transform;
+    transition:border-color .2s ease;
+  }
+  .proj-row:hover{border-color:var(--cyan);}
+  @media (max-width:760px){
+    .proj-row{grid-template-columns:1fr; gap:10px;}
+  }
+  .proj-id{font-family:var(--font-mono); font-size:12px; color:var(--text-dim);}
+  .proj-name{font-family:var(--font-display); font-size:16px; font-weight:600;}
+  .proj-tags{display:flex; flex-wrap:wrap; gap:6px;}
+  .proj-tag{font-family:var(--font-mono); font-size:10.5px; color:var(--text-muted); border:1px solid var(--border-soft); padding:4px 9px;}
+  .proj-status{display:flex; align-items:center; gap:8px; justify-self:end; font-family:var(--font-mono); font-size:12px;}
+  @media (max-width:760px){ .proj-status{justify-self:start;} }
+  .dot{width:8px; height:8px; border-radius:50%;}
+  .dot.done{background:var(--cyan);}
+  .dot.live{background:var(--amber); animation:pulse2 1.8s infinite;}
+  @keyframes pulse2{
+    0%{box-shadow:0 0 0 0 rgba(242,169,59,.55);}
+    70%{box-shadow:0 0 0 7px rgba(242,169,59,0);}
+    100%{box-shadow:0 0 0 0 rgba(242,169,59,0);}
+  }
+  .status-done{color:var(--cyan);}
+  .status-live{color:var(--amber);}
+
+  /* ---------- research ---------- */
+  .research-list{position:relative; padding-left:32px;}
+  .research-list::before{content:""; position:absolute; left:6px; top:6px; bottom:6px; width:1px; background:var(--border);}
+  .research-item{position:relative; padding:0 0 44px 24px;}
+  .research-item:last-child{padding-bottom:0;}
+  .research-item::before{
+    content:""; position:absolute; left:-32px; top:4px; width:11px; height:11px;
+    border:2px solid var(--violet); background:var(--bg-void); border-radius:50%;
+  }
+  .research-kind{font-family:var(--font-mono); font-size:11px; color:var(--violet); margin-bottom:8px;}
+  .research-item h3{font-size:19px; margin-bottom:10px;}
+  .research-item p{color:var(--text-muted); font-size:14.5px; max-width:640px;}
+  .research-item p b{color:var(--text); font-weight:500;}
+
+  /* ---------- connect ---------- */
+  .connect-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+  @media (max-width:720px){ .connect-grid{grid-template-columns:repeat(2,1fr);} }
+  .connect-tile{
+    padding:26px 20px; display:flex; flex-direction:column; gap:14px; align-items:flex-start;
+    transform-style:preserve-3d; will-change:transform; transition:border-color .2s ease;
+  }
+  .connect-tile:hover{border-color:var(--cyan);}
+  .connect-tile i{font-size:19px; color:var(--cyan);}
+  .connect-tile span{font-family:var(--font-mono); font-size:13px; color:var(--text);}
+
+  footer{border-top:1px solid var(--border-soft); padding:36px 0; margin-top:40px;}
+  .footer-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+  .footer-inner p{font-family:var(--font-mono); font-size:11.5px; color:var(--text-dim);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<header>
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-mark">JT</span> Jaivanth T</div>
+    <nav class="navlinks">
+      <a href="#about">~/about</a>
+      <a href="#toolbar">~/toolbar</a>
+      <a href="#projects">~/projects</a>
+      <a href="#research">~/research</a>
+      <a href="#connect">~/connect</a>
+    </nav>
+    <div class="status"><span class="status-dot"></span> system: online</div>
+  </div>
+</header>
+
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+    <div class="hero-tag"><i class="fa-solid fa-shield-halved"></i> network engineering · cloud infrastructure</div>
+    <h1>Jaivanth T</h1>
+    <p class="hero-role">B.E. Computer Science &amp; Engineering — <b>Jerusalem College of Engineering</b></p>
+    <p class="hero-desc">I design, route and secure networks — from VLANs and OSPF on Packet Tracer to the cloud infrastructure they'll one day run on. Currently building toward AWS &amp; Azure.</p>
+    <div class="hero-scroll"><span class="line"></span> scroll to explore the topology</div>
+  </div>
+</section>
+
+<section class="block tight" id="about">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-head">
+        <div class="section-path">~/about</div>
+        <h2>Learning networks from the packet up.</h2>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <div class="reveal about-copy">
+        <p>I'm Jaivanth T, a B.E. Computer Science and Engineering student with a strong interest in <b>computer networking and cloud technologies</b>. I learn by building — configuring topologies, tracing traffic, and breaking things on purpose so I understand how to secure them.</p>
+        <p>Most of my time goes into hands-on networking projects in <b>Cisco Packet Tracer</b>, working through routing, switching, and enterprise design the way a network engineer actually would.</p>
+
+        <div class="stat-list">
+          <div class="stat-row">
+            <div class="stat-label">degree</div>
+            <div class="stat-value">B.E. Computer Science &amp; Engineering <span>— Jerusalem College of Engineering</span></div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-label">currently building</div>
+            <div class="stat-value">Hands-on networking projects <span>using Cisco Packet Tracer</span></div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-label">career focus</div>
+            <div class="stat-value">Network Engineering &amp; Cloud Technologies <span>(AWS &amp; Azure)</span></div>
+          </div>
+        </div>
+
+        <div class="skills-title">technical skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Computer Networking</span>
+          <span class="skill-tag">Routing &amp; Switching</span>
+          <span class="skill-tag">CCNA &amp; CCNP Concepts</span>
+          <span class="skill-tag">Server Management</span>
+          <span class="skill-tag">Firewall</span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="node-box">
+          <div class="tag">node-status.live</div>
+          <canvas id="about-canvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="toolbar">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-head">
+        <div class="section-path">~/toolbar</div>
+        <h2>The stack I work in</h2>
+        <p>Tools and platforms I use to build practical networking knowledge — from topology design to packet-level analysis and virtualized infrastructure.</p>
+      </div>
+    </div>
+
+    <div class="tool-grid">
+      <div class="reveal panel tool-card">
+        <div class="scanbar"></div>
+        <div class="tool-icon"><i class="fa-solid fa-network-wired"></i></div>
+        <div class="tool-cat">network simulation</div>
+        <div class="tool-name">Cisco Packet Tracer</div>
+        <div class="tool-desc">Network topology design · IP addressing · subnetting · routing · switching · configuration · troubleshooting</div>
+      </div>
+
+      <div class="reveal panel tool-card">
+        <div class="scanbar"></div>
+        <div class="tool-icon"><i class="fa-solid fa-wave-square"></i></div>
+        <div class="tool-cat">network analysis</div>
+        <div class="tool-name">Wireshark</div>
+        <div class="tool-desc">Packet analysis · network traffic monitoring · protocol analysis · troubleshooting</div>
+      </div>
+
+      <div class="reveal panel tool-card">
+        <div class="scanbar"></div>
+        <div class="tool-icon"><i class="fa-brands fa-linux"></i></div>
+        <div class="tool-cat">operating system &amp; servers</div>
+        <div class="tool-name">Linux</div>
+        <div class="tool-desc">Networking commands · server management · system administration · network configuration</div>
+      </div>
+
+      <div class="reveal panel tool-card">
+        <div class="scanbar"></div>
+        <div class="tool-icon"><i class="fa-solid fa-layer-group"></i></div>
+        <div class="tool-cat">virtualization</div>
+        <div class="tool-name">VMware Workstation</div>
+        <div class="tool-desc">Virtual machines · virtual networking · server environments · infrastructure concepts</div>
+      </div>
+
+      <div class="reveal panel tool-card">
+        <div class="scanbar"></div>
+        <div class="tool-icon"><i class="fa-brands fa-python"></i></div>
+        <div class="tool-cat">programming &amp; automation</div>
+        <div class="tool-name">Python</div>
+        <div class="tool-desc">Programming fundamentals · networking utilities · automation concepts · problem solving</div>
+      </div>
+
+      <div class="reveal panel tool-card">
+        <div class="scanbar"></div>
+        <div class="tool-icon"><i class="fa-solid fa-diagram-project"></i></div>
+        <div class="tool-cat">network emulation</div>
+        <div class="tool-name">GNS3</div>
+        <div class="tool-desc">Network topology design · device emulation · routing · switching · configuration · troubleshooting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="projects">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-head">
+        <div class="section-path">~/projects</div>
+        <h2>Ongoing network builds</h2>
+        <p>Enterprise-style network designs built end to end — from VLAN segmentation through routing, security and redundancy.</p>
+      </div>
+    </div>
+
+    <div class="proj-list">
+      <div class="reveal panel proj-row">
+        <div class="scanbar"></div>
+        <div class="proj-id">01</div>
+        <div class="proj-name">Enterprise Branch Network with OSPF</div>
+        <div class="proj-tags"><span class="proj-tag">VLANs</span><span class="proj-tag">Inter-VLAN Routing</span><span class="proj-tag">OSPF</span><span class="proj-tag">DHCP</span><span class="proj-tag">ACLs</span></div>
+        <div class="proj-status status-done"><span class="dot done"></span> Completed</div>
+      </div>
+
+      <div class="reveal panel proj-row">
+        <div class="scanbar"></div>
+        <div class="proj-id">02</div>
+        <div class="proj-name">Multi-Branch Corporate Network</div>
+        <div class="proj-tags"><span class="proj-tag">WAN</span><span class="proj-tag">OSPF/EIGRP</span><span class="proj-tag">VLANs</span><span class="proj-tag">DHCP</span><span class="proj-tag">NAT</span><span class="proj-tag">ACL</span></div>
+        <div class="proj-status status-live"><span class="dot live"></span> Ongoing</div>
+      </div>
+
+      <div class="reveal panel proj-row">
+        <div class="scanbar"></div>
+        <div class="proj-id">03</div>
+        <div class="proj-name">Campus Network Design</div>
+        <div class="proj-tags"><span class="proj-tag">Hierarchical Design</span><span class="proj-tag">VLANs</span><span class="proj-tag">STP</span><span class="proj-tag">EtherChannel</span><span class="proj-tag">OSPF</span></div>
+        <div class="proj-status status-live"><span class="dot live"></span> Ongoing</div>
+      </div>
+
+      <div class="reveal panel proj-row">
+        <div class="scanbar"></div>
+        <div class="proj-id">04</div>
+        <div class="proj-name">Bank Branch Network Simulation</div>
+        <div class="proj-tags"><span class="proj-tag">VLANs</span><span class="proj-tag">Routing</span><span class="proj-tag">ACLs</span><span class="proj-tag">DHCP</span><span class="proj-tag">NAT</span><span class="proj-tag">Security</span></div>
+        <div class="proj-status status-live"><span class="dot live"></span> Ongoing</div>
+      </div>
+
+      <div class="reveal panel proj-row">
+        <div class="scanbar"></div>
+        <div class="proj-id">05</div>
+        <div class="proj-name">Hospital Network Infrastructure</div>
+        <div class="proj-tags"><span class="proj-tag">Department VLANs</span><span class="proj-tag">Routing</span><span class="proj-tag">ACLs</span><span class="proj-tag">DHCP</span><span class="proj-tag">Redundancy</span></div>
+        <div class="proj-status status-live"><span class="dot live"></span> Ongoing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-head">
+        <div class="section-path">~/research</div>
+        <h2>Research &amp; technical achievements</h2>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="research-list">
+        <div class="research-item">
+          <div class="research-kind">national level conference</div>
+          <h3>Paper Presentation — Brain Tumor Detection Using CNN</h3>
+          <p>Presented a research paper titled <b>"Brain Tumor Detection Using Convolutional Neural Network (CNN)"</b> at a national-level conference held at M.A.M College of Engineering, Trichy, exploring deep learning techniques for tumor detection.</p>
+        </div>
+        <div class="research-item">
+          <div class="research-kind">national level technical symposium</div>
+          <h3>Technical MCQ Event</h3>
+          <p>Competed in a technical MCQ-based event at a national-level symposium held at K. Ramakrishnan College of Technology, Trichy, covering <b>programming languages, coding concepts and technical knowledge</b>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="connect">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-head">
+        <div class="section-path">~/connect</div>
+        <h2>Open a connection</h2>
+        <p>Reach out through any of these channels.</p>
+      </div>
+    </div>
+
+    <div class="reveal connect-grid">
+      <a class="panel connect-tile" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i><span>Instagram</span></a>
+      <a class="panel connect-tile" href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i><span>GitHub</span></a>
+      <a class="panel connect-tile" href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i><span>LinkedIn</span></a>
+      <a class="panel connect-tile" href="#" aria-label="Gmail"><i class="fa-solid fa-envelope"></i><span>Gmail</span></a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <footer>
+      <div class="footer-inner">
+        <p>© 2026 Jaivanth T · B.E. CSE Student · Aspiring Cloud Engineer</p>
+        <p>Chennai, Tamil Nadu</p>
+      </div>
+    </footer>
+  </div>
+</section>
+
+<!-- NOTE for Jaivanth: the Instagram / GitHub / LinkedIn / Gmail links above are placeholders (href="#").
+     Replace them with your real profile URLs and mailto: address before publishing. -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------------- cursor glow ---------------- */
+  var glow = document.getElementById('cursorGlow');
+  if (glow && !reduceMotion) {
+    window.addEventListener('mousemove', function(e){
+      glow.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
+    });
+  }
+
+  /* ---------------- scroll reveal ---------------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  /* ---------------- 3D tilt cards ---------------- */
+  var tiltEls = document.querySelectorAll('.tool-card, .proj-row, .connect-tile');
+  tiltEls.forEach(function(el){
+    el.addEventListener('mousemove', function(e){
+      if (reduceMotion) return;
+      var r = el.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width;
+      var py = (e.clientY - r.top) / r.height;
+      var rx = (py - 0.5) * -6;
+      var ry = (px - 0.5) * 8;
+      el.style.transform = 'perspective(800px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateZ(2px)';
+    });
+    el.addEventListener('mouseleave', function(){
+      el.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+    });
+  });
+
+  /* ---------------- three.js: hero network globe ---------------- */
+  if (window.THREE) {
+    var heroCanvas = document.getElementById('hero-canvas');
+    var heroSection = document.querySelector('.hero');
+    var heroRenderer = new THREE.WebGLRenderer({ canvas: heroCanvas, antialias: true, alpha: true });
+    heroRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+    var heroScene = new THREE.Scene();
+    var heroCamera = new THREE.PerspectiveCamera(55, 1, 1, 2000);
+    heroCamera.position.set(0, 0, 420);
+
+    var heroGroup = new THREE.Group();
+    heroScene.add(heroGroup);
+
+    var R = 150;
+    var wireGeo = new THREE.IcosahedronGeometry(R, 2);
+    var wireMat = new THREE.MeshBasicMaterial({ color: 0x4fe3d4, wireframe: true, transparent: true, opacity: 0.22 });
+    var wireSphere = new THREE.Mesh(wireGeo, wireMat);
+    heroGroup.add(wireSphere);
+
+    var coreGeo = new THREE.IcosahedronGeometry(32, 1);
+    var coreMat = new THREE.MeshBasicMaterial({ color: 0x8b7cf6, wireframe: true, transparent: true, opacity: 0.55 });
+    var core = new THREE.Mesh(coreGeo, coreMat);
+    heroGroup.add(core);
+
+    // nodes on the sphere (lat/long "data center" points)
+    var latlongs = [
+      [10, 20], [45, -60], [-30, 100], [60, 160], [-55, -40],
+      [20, -130], [5, 80], [-15, -170], [70, 10], [-70, 60]
+    ];
+    var nodeColors = [0x4fe3d4, 0xf2a93b, 0x4fe3d4, 0x8b7cf6, 0xf2a93b];
+    var nodePts = [];
+    latlongs.forEach(function(ll, i){
+      var lat = ll[0] * Math.PI / 180;
+      var lon = ll[1] * Math.PI / 180;
+      var x = R * Math.cos(lat) * Math.cos(lon);
+      var y = R * Math.sin(lat);
+      var z = R * Math.cos(lat) * Math.sin(lon);
+      var v = new THREE.Vector3(x, y, z);
+      nodePts.push(v);
+      var g = new THREE.SphereGeometry(3.4, 10, 10);
+      var m = new THREE.MeshBasicMaterial({ color: nodeColors[i % nodeColors.length] });
+      var s = new THREE.Mesh(g, m);
+      s.position.copy(v);
+      heroGroup.add(s);
+    });
+
+    // routes between some node pairs, with traveling packets
+    var pairs = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,0],[0,4],[2,7]];
+    var packets = [];
+    pairs.forEach(function(p){
+      var a = nodePts[p[0]], b = nodePts[p[1]];
+      var mid = a.clone().add(b).multiplyScalar(0.5).normalize().multiplyScalar(R * 1.35);
+      var curve = new THREE.QuadraticBezierCurve3(a, mid, b);
+      var pts = curve.getPoints(40);
+      var geo = new THREE.BufferGeometry().setFromPoints(pts);
+      var mat = new THREE.LineBasicMaterial({ color: 0x4fe3d4, transparent: true, opacity: 0.28 });
+      var line = new THREE.Line(geo, mat);
+      heroGroup.add(line);
+
+      var pg = new THREE.SphereGeometry(2, 8, 8);
+      var pm = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      var packet = new THREE.Mesh(pg, pm);
+      heroGroup.add(packet);
+      packets.push({ mesh: packet, curve: curve, t: Math.random(), speed: 0.0025 + Math.random() * 0.003 });
+    });
+
+    // starfield
+    var starCount = 500;
+    var starGeo = new THREE.BufferGeometry();
+    var starPos = new Float32Array(starCount * 3);
+    for (var i = 0; i < starCount; i++) {
+      var radius = 600 + Math.random() * 500;
+      var theta = Math.random() * Math.PI * 2;
+      var phi = Math.acos((Math.random() * 2) - 1);
+      starPos[i*3] = radius * Math.sin(phi) * Math.cos(theta);
+      starPos[i*3+1] = radius * Math.sin(phi) * Math.sin(theta);
+      starPos[i*3+2] = radius * Math.cos(phi);
+    }
+    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+    var starMat = new THREE.PointsMaterial({ color: 0x3a4a63, size: 1.6, transparent: true, opacity: 0.6 });
+    var stars = new THREE.Points(starGeo, starMat);
+    heroScene.add(stars);
+
+    var mouseX = 0, mouseY = 0;
+    window.addEventListener('mousemove', function(e){
+      mouseX = (e.clientX / window.innerWidth) - 0.5;
+      mouseY = (e.clientY / window.innerHeight) - 0.5;
+    });
+
+    function resizeHero(){
+      var w = heroSection.clientWidth, h = heroSection.clientHeight;
+      heroRenderer.setSize(w, h, false);
+      heroCamera.aspect = w / h;
+      heroCamera.updateProjectionMatrix();
+    }
+    resizeHero();
+    window.addEventListener('resize', resizeHero);
+
+    function animateHero(){
+      requestAnimationFrame(animateHero);
+      if (!reduceMotion) {
+        heroGroup.rotation.y += 0.0016;
+        heroGroup.rotation.x += (mouseY * 0.3 - heroGroup.rotation.x) * 0.02;
+        heroGroup.rotation.y += (mouseX * 0.001);
+        core.rotation.y -= 0.004;
+        core.rotation.x += 0.002;
+        stars.rotation.y += 0.0002;
+
+        packets.forEach(function(p){
+          p.t += p.speed;
+          if (p.t > 1) p.t = 0;
+          var pos = p.curve.getPointAt(p.t);
+          p.mesh.position.copy(pos);
+        });
+      }
+      heroRenderer.render(heroScene, heroCamera);
+    }
+    animateHero();
+
+    /* ---------------- three.js: about "shield" node ---------------- */
+    var aboutCanvas = document.getElementById('about-canvas');
+    if (aboutCanvas) {
+      var aboutRenderer = new THREE.WebGLRenderer({ canvas: aboutCanvas, antialias: true, alpha: true });
+      aboutRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+      var aboutScene = new THREE.Scene();
+      var aboutCamera = new THREE.PerspectiveCamera(50, 1, 1, 1000);
+      aboutCamera.position.set(0, 0, 140);
+
+      var aboutGroup = new THREE.Group();
+      aboutScene.add(aboutGroup);
+
+      var shieldCoreGeo = new THREE.IcosahedronGeometry(22, 1);
+      var shieldCoreMat = new THREE.MeshBasicMaterial({ color: 0x8b7cf6, wireframe: true, transparent: true, opacity: 0.65 });
+      var shieldCore = new THREE.Mesh(shieldCoreGeo, shieldCoreMat);
+      aboutGroup.add(shieldCore);
+
+      var ring1Geo = new THREE.TorusGeometry(38, 0.6, 8, 64);
+      var ring1Mat = new THREE.MeshBasicMaterial({ color: 0x4fe3d4, transparent: true, opacity: 0.55 });
+      var ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
+      ring1.rotation.x = Math.PI / 2.4;
+      aboutGroup.add(ring1);
+
+      var ring2Geo = new THREE.TorusGeometry(48, 0.5, 8, 64);
+      var ring2Mat = new THREE.MeshBasicMaterial({ color: 0xf2a93b, transparent: true, opacity: 0.4 });
+      var ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
+      ring2.rotation.x = Math.PI / 1.7;
+      ring2.rotation.y = Math.PI / 5;
+      aboutGroup.add(ring2);
+
+      // small satellite nodes orbiting the rings
+      var sats = [];
+      for (var s = 0; s < 5; s++) {
+        var sg = new THREE.SphereGeometry(2.2, 8, 8);
+        var sm = new THREE.MeshBasicMaterial({ color: s % 2 === 0 ? 0x4fe3d4 : 0xf2a93b });
+        var sat = new THREE.Mesh(sg, sm);
+        aboutGroup.add(sat);
+        sats.push({ mesh: sat, angle: (Math.PI * 2 / 5) * s, radius: 38 + (s % 2) * 10, speed: 0.008 + s * 0.001, ring: s % 2 });
+      }
+
+      function resizeAbout(){
+        var box = aboutCanvas.parentElement;
+        var w = box.clientWidth, h = box.clientHeight;
+        aboutRenderer.setSize(w, h, false);
+        aboutCamera.aspect = w / h;
+        aboutCamera.updateProjectionMatrix();
+      }
+      resizeAbout();
+      window.addEventListener('resize', resizeAbout);
+
+      function animateAbout(){
+        requestAnimationFrame(animateAbout);
+        if (!reduceMotion) {
+          aboutGroup.rotation.y += 0.004;
+          shieldCore.rotation.x += 0.003;
+          ring1.rotation.z += 0.003;
+          ring2.rotation.z -= 0.002;
+          sats.forEach(function(sat){
+            sat.angle += sat.speed;
+            var rad = sat.radius;
+            sat.mesh.position.set(
+              Math.cos(sat.angle) * rad,
+              Math.sin(sat.angle) * rad * (sat.ring ? 0.4 : 1),
+              Math.sin(sat.angle * 0.7) * rad * (sat.ring ? 1 : 0.4)
+            );
+          });
+        }
+        aboutRenderer.render(aboutScene, aboutCamera);
+      }
+      animateAbout();
+    }
+  }
+})();
+</script>
+</body>
+</html>

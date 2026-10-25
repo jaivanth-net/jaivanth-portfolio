@@ -1,5 +1,5 @@
 const texts = [
-    "CSE Student | Aspiring Cloud Engineer",
+    "CSE Student | Aspiring Network Engineer",
     "Student @ Jerusalem College of Engineering"
 ];
 

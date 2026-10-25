@@ -1664,5 +1664,113 @@ footer {
         filter 0.3s ease;
 }
 
+/* ========================================
+   LIVE LINKS BOX
+======================================== */
+
+.live-box {
+    max-width: 900px;
+    margin: 40px auto 0;
+    padding: 28px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 0 30px rgba(14, 165, 233, 0.08);
+}
+
+.live-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--heading);
+}
+
+.live-subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    margin: 4px 0 22px;
+}
+
+/* pulsing green "live" dot */
+.live-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 8px var(--success);
+    animation: livePulse 1.5s infinite;
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: 1;   transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(1.4); }
+}
+
+.live-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.live-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    background: var(--card-inner);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+.live-card:hover {
+    border-color: var(--heading);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(0, 229, 255, 0.2);
+}
+
+.live-icon {
+    font-size: 28px;
+}
+
+.live-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.live-info strong {
+    color: var(--title);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.live-info small {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.live-arrow {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--heading);
+    transition: transform 0.3s ease;
+}
+
+.live-card:hover .live-arrow {
+    transform: translate(4px, -4px);
+}
+
+@media (max-width: 600px) {
+    .live-box { padding: 20px; }
+}
+
+
 
 
